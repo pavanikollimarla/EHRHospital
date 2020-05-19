@@ -1,0 +1,271 @@
+﻿
+@{
+    ViewBag.Title = "Inventory";
+} 
+<h2 style="color:cornflowerblue">Inventory List</h2>
+<h1 onclick="this.innerHTML='Hello!'"> Click here!</h1>
+<body>
+    @*Form table*@
+    <table class="table2">
+        <tr>
+            <td class="table2">Product Name</td>
+            <td class="table2">Manufacturer</td>
+            <td class="table2">Item Number</td>
+            <td class="table2">Problem/Condition</td>
+            <td class="table2">Category</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" id="Pname" name="Pname">
+            </td>
+            <td>
+                <select style="width:150px">
+                    <option></option>
+                </select>
+            </td>
+            <td>
+                <input type="text" id="Iname" name="Iname">
+            </td>
+            <td>
+                <select style="width:150px">
+                    <option></option>
+                </select>
+            </td>
+            <td>
+                <select style="width:150px">
+                    <option></option>
+                </select>
+            </td>
+            <td>
+                <button onclick="mySubmit()">Apply Filter</button>
+            </td>
+        </tr>
+    </table>
+    <br /><br /><br /><br />
+
+    <form>
+        <table id="mytable">
+            <tr>
+                <td>Product name</td>
+                <td>
+                    <input type="text" id="Prodname" name="name" size="25" />
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>Item No:</td>
+                <td><input type="text" id="ITname" name="name" size="25"></td>
+            </tr>
+            <tr>
+                <td>Problem</td>
+                <td><input type="text" id="Probname" name="name" size="25"></td>
+            </tr>
+            <tr>
+                <td>Manufacturer</td>
+                <td><input type="text" id="Manfname" name="Manname" size="25"></td>
+            </tr>
+            <tr>
+                <td>Category</td>
+                <td><input type="text" id="Catname" name="name" size="25"></td>
+            </tr>
+            <tr>
+                <td>StoreBox</td>
+                <td><input type="text" id="SBname" name="name" size="25"></td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td><input type="text" id="PCname" name="name" size="25"></td>
+            </tr>
+            <tr>
+                <td>Quantity</td>
+                <td><input type="text" id="QTYname" name="name" size="25"></td>
+            </tr>
+            <tr>
+                <td>Expiry Date</td>
+                <td><input type="text" id="EXPname" name="name" size="25"></td>
+            </tr>
+        </table>
+        <br />
+        <p> <input id="button" type="button" value=" Add " onclick="AddData()" /></p>
+    </form>
+    <br /><br /><br /><br />
+    
+
+
+    @*Main table*@
+    <table id="myTable" style="width:100%">
+        <tr>
+            <th onclick="sortTable(0)">Product Name<img src="~/Images/sort.png" style="width:15px" /></th>
+            <th onclick="sortTable(1)">Item No:<img src="~/Images/sort.png" style="width:15px" /></th>
+            <th onclick="sortTable(2)">Problem <img src="~/Images/sort.png" style="width:15px" /></th>
+            <th>Manufacturer</th>
+            <th>Category</th>
+            <th>Store Box</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Expiry Date</th>
+        </tr>
+        <tr class="hover01">
+            <td class="hover01">Accomate</td>
+            <td class="hover01">1</td>
+            <td class="hover01">acne</td>
+            <td class="hover01">Kimberly clerk lever</td>
+            <td class="hover01">Cream</td>
+            <td class="hover01">A1.1</td>
+            <td class="hover01">100</td>
+            <td class="hover01">150</td>
+            <td class="hover01"> </td>
+        </tr>
+        <tr class="  hover01">
+            <td class="hover01">A1 Cream</td>
+            <td class="hover01">2</td>
+            <td class="hover01">cough</td>
+            <td class="hover01">I & C</td>
+            <td class="hover01">Syrup</td>
+            <td class="hover01">A2.2</td>
+            <td class="hover01">200</td>
+            <td class="hover01">100</td>
+            <td class="hover01">Jan 2020</td>
+        </tr>
+        <tr>
+            <td class="hover01">Acadine Tab</td>
+            <td class="hover01">3</td>
+            <td class="hover01">fever</td>
+            <td class="hover01">Marching Ltd</td>
+            <td class="hover01">Tablet</td>
+            <td class="hover01">B2</td>
+            <td class="hover01">100</td>
+            <td class="hover01">50</td>
+            <td class="hover01">Jan 2020</td>
+        </tr>
+        <tr>
+            <td class="hover01">A-Phine</td>
+            <td class="hover01">4</td>
+            <td class="hover01">Bacterial Infection</td>
+            <td class="hover01">Accord HealthCare</td>
+            <td class="hover01">Medication</td>
+            <td class="hover01">A2.2</td>
+            <td class="hover01">500</td>
+            <td class="hover01">200</td>
+            <td class="hover01">Mar 2020</td>
+        </tr>
+        <tr>
+            <td class="hover01">Anatrazole</td>
+            <td class="hover01">5</td>
+            <td class="hover01">Cancer</td>
+            <td class="hover01">Marching Ltd</td>
+            <td class="hover01">Tablet</td>
+            <td class="hover01">A1.2</td>
+            <td class="hover01">300</td>
+            <td class="hover01">300</td>
+            <td class="hover01">Feb 2020</td>
+        </tr>
+    </table>
+</body>
+<p id="demo"></p>
+
+
+<script>
+    //For alert and prompt
+    function mySubmit() {
+        alert("Filter applied succesfully");
+        var msg = prompt("Please enter Product Name");
+        if (msg != null) {
+            document.getElementById("demo").innerHTML = "Your Product Name is :" + msg; 
+        }
+    }
+
+    //Add form data to table
+    function AddData() {   
+        //var rows = "";
+        //var name = document.getElementById("Pname").value;
+        //    rows += "<tr><td>" + name + "</td></tr>";
+        //$(rows).appendTo("#list tbody");
+        var table = document.getElementById("myTable");
+        var row = table.insertRow(6);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3); 
+        var cell5 = row.insertCell(4);
+        var cell6 = row.insertCell(5); 
+        var cell7 = row.insertCell(6);
+        var cell8 = row.insertCell(7); 
+        var cell9 = row.insertCell(8);
+        if (document.getElementById("Prodname").value == "") {
+
+            alert("please enter details!");
+            return false;
+        }
+        else {
+            cell1.innerHTML = document.getElementById("Prodname").value;
+            cell2.innerHTML = document.getElementById("ITname").value;
+            cell3.innerHTML = document.getElementById("Probname").value;
+            cell4.innerHTML = document.getElementById("Manfname").value;
+            cell5.innerHTML = document.getElementById("Catname").value;
+            cell6.innerHTML = document.getElementById("SBname").value;
+            cell7.innerHTML = document.getElementById("PCname").value;
+            cell8.innerHTML = document.getElementById("QTYname").value;
+            cell9.innerHTML = document.getElementById("EXPname").value;
+        }
+        
+    }
+    
+
+     //For sorting 
+    function sortTable(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById("myTable");
+        switching = true;
+        //Set the sorting direction to ascending:
+        dir = "asc";
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /*Loop through all table rows (except the
+            first, which contains table headers):*/
+            for (i = 1; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                x = rows[i].getElementsByTagName("td")[n];
+                y = rows[i + 1].getElementsByTagName("td")[n];
+                /*check if the two rows should switch place,
+                based on the direction, asc or desc:*/
+                if (dir == "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                //Each time a switch is done, increase this count by 1:
+                switchcount++;
+            } else {
+                /*If no switching has been done AND the direction is "asc",
+                set the direction to "desc" and run the while loop again.*/
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
+            }
+        }
+    }
+</script>
+
